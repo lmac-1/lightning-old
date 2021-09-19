@@ -3,3 +3,7 @@ todo.txt
 
 *.css
 *.css.map
+
+
+# Mac file
+.DS_Store
