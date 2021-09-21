@@ -13,20 +13,26 @@
 </head>
 <body>
     <main class="h-100 text-center container">
-        <section>
-            <button id="hide">Hide</button>
-            <button id="next">Next</button>
-        </section>
-        <section>
-            <p id="question">Tell me about something you watched on Netflix recently.</p>
-        </section>
-        <section>
-            <button>Start</button>
-            <!-- <button>Reset</button> -->
-        </section>
-        <div class="timer">
-            60
+        <div id="initialCountdownTimer" class="d-none">
+            3
         </div>
+        <div id="questionSections">
+            <section>
+                <button id="hide">Hide</button>
+                <button id="next">Next</button>
+            </section>
+            <section>
+                <p id="question">Tell me about something you watched on Netflix recently.</p>
+            </section>
+            <section>
+                <button>Start</button>
+                <!-- <button>Reset</button> -->
+            </section>
+            <section>
+                <p id="timer">3</p>
+            </section>
+        </div>
+        
         
         
     </main>
