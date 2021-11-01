@@ -66,17 +66,25 @@ a, a:hover, a:visited {
     text-align: center;
 }
 
+.secondary {
+    color: $secondary;
+}
 
 
 .button, button {
     display: inline-block;
     padding: 0.5rem 0.6rem;
     margin-top: 0.5rem;
-    background-color: white;
+    background-color: $secondary;
     border: 1px solid $secondary;
     border-radius: 10px;
-    color: $secondary;
+    color: $primary;
     font-size: 1rem;
+    transition: transform 200ms;
+}
+
+button:hover, .button:hover {
+    transform: scale(1.05);
 }
 
 .container {
