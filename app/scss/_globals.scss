@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
+
 html {
     font-size: 100%;
     box-sizing: border-box;
@@ -24,8 +26,10 @@ h1,h2,h3 {
 }
 
 h1 {
-    font-family: 'Shrikhand';
+    font-family: 'Inter';
+    font-weight: 800;
     font-size: 3rem;
+    letter-spacing: -2.4px;
 }
 
 a, a:hover, a:visited {
@@ -81,15 +85,22 @@ a, a:hover, a:visited {
     color: $primary;
     font-size: 1rem;
     transition: transform 200ms;
+    cursor: pointer;
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &:hover:enabled {
+        transform: scale(1.05);
+    }
 }
 
-button:hover, .button:hover {
-    transform: scale(1.05);
-}
-
-.container {
+.timerContainer {
     max-width: 50rem;
     margin: 0 auto;
+    margin-top: 4rem;
 }
 
 .d-none {
