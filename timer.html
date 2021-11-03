@@ -12,24 +12,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
 </head>
 <body>
-    <main class="h-100 text-center container">
+    <main class="h-100 text-center timerContainer">
         <div id="initialCountdownTimer" class="d-none">
             3
         </div>
         <div id="questionSections">
             <section>
-                <button id="hide">Hide</button>
-                <button id="next">Next</button>
+                <button id="startTimer">Start</button>
+                <button id="resetTimer" disabled>Reset</button>
+            </section>
+            <section>
+                <p id="timer">5</p>
             </section>
             <section>
                 <p id="question">Tell me about something you watched on Netflix recently.</p>
             </section>
             <section>
-                <button>Start</button>
-                <!-- <button>Reset</button> -->
-            </section>
-            <section>
-                <p id="timer">3</p>
+                <button id="nextQuestion">Next question</button>
             </section>
         </div>
         
