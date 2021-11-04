@@ -1,0 +1,74 @@
+{
+    "questions": [
+        {
+            "id": 0,
+            "question": "What's your favourite film, and why?",
+            "level": "medium"
+        },
+        {
+            "id": 1,
+            "question": "Tell me about your experience of 2020.",
+            "level": "medium"
+        },
+        {
+            "id": 2,
+            "question": "Do you think social media is negative or positive for society?",
+            "level": "hard"
+        }, 
+        {
+            "id": 3,
+            "question": "Describe your best friend.", 
+            "level": "easy"
+        }, 
+        {
+            "id": 4,
+            "question": "Who do you think is the greatest person in history?",
+            "level": "hard"
+        },
+        {
+            "id": 5,
+            "question": "Tell me about your favourite restaurant",
+            "level": "easy"
+        },
+        {
+            "id": 6,
+            "question": "What would be your ideal job?",
+            "level": "hard"
+        },
+        {
+            "id": 7,
+            "question": "How have your parents influenced you?",
+            "level": "medium"
+        },
+        {
+            "id": 8,
+            "question": "What are your plans today?",
+            "level": "easy"
+        },
+        {
+            "id": 9,
+            "question": "Is beauty important in society?",
+            "level": "hard"
+        },
+        {
+            "id": 10,
+            "question": "What is your favourite book, and why?",
+            "level": "medium"
+        },
+        {
+            "id": 11,
+            "question": "Who is the most ambitious person you know?",
+            "level": "hard"
+        },
+        {
+            "id": 12,
+            "question": "Who inspires you? Why?",
+            "level": "hard"
+        },
+        {
+            "id": 13,
+            "question": "Do you think that vaccines should be mandatory?",
+            "level": "hard"
+        }
+    ]
+}

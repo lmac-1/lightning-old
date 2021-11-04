@@ -11,7 +11,7 @@ html {
     margin: 0;
     padding: 0;
 }
-/* ORANGE AND WHITE */
+
 body {
     margin: 0;
     padding: 0;
@@ -23,13 +23,18 @@ body {
 
 h1,h2,h3 {
     margin-top: 0;
+    color: $tertiary;
 }
 
 h1 {
     font-family: 'Inter';
     font-weight: 800;
-    font-size: 3rem;
+    font-size: 5rem;
     letter-spacing: -2.4px;
+}
+
+p {
+    margin-bottom: 0.5rem;
 }
 
 a, a:hover, a:visited {
@@ -37,7 +42,6 @@ a, a:hover, a:visited {
 }
 
 /* Flex helper classes */
-
 .flex {
     display: flex;
 
@@ -74,16 +78,16 @@ a, a:hover, a:visited {
     color: $secondary;
 }
 
-
 .button, button {
     display: inline-block;
-    padding: 0.5rem 0.6rem;
-    margin-top: 0.5rem;
+    padding: 0.5rem 0.8rem;
+    margin: 0.5rem;
     background-color: $secondary;
     border: 1px solid $secondary;
     border-radius: 10px;
     color: $primary;
     font-size: 1rem;
+    font-family: inherit;
     transition: transform 200ms;
     cursor: pointer;
 

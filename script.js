@@ -3,21 +3,27 @@ let t = null;
 const startPauseTimerButton = document.querySelector('#startTimer');
 const resetButton = document.querySelector('#resetTimer');
 const timerSeconds = document.querySelector('#timer');
+const questionDiv = document.querySelector('#question');
+
+let userSettings = {
+    totalQuestions: 5, 
+    secondsPerQuestion: 10, 
+    level: "easy", 
+    recording: false
+}
 
 let timer = {
-    secondsPerQuestion: 5,
-    questionsRemaining: 5,
     secondsRemaining: undefined,
     active: false,
     startTimer() {
-        if (this.secondsRemaining == undefined) this.secondsRemaining = this.secondsPerQuestion;
+        if (this.secondsRemaining == undefined) this.secondsRemaining = userSettings.secondsPerQuestion;
         this.active = true;
+        
         // Updates buttons
         startPauseTimerButton.innerHTML = "Pause";
         resetButton.disabled = true;
 
         t = setInterval(() => {
-            
             // Stops timer once reaches zero
             if (this.secondsRemaining <= 0) {
                 clearInterval(t);
@@ -29,31 +35,89 @@ let timer = {
                 this.secondsRemaining--;
                 updateTimerText(this.secondsRemaining);
             }
-
         }, 1000);
     }, 
     pauseTimer() {
-        // Stops timer
         clearInterval(t);
         this.active = false;
-        // Updates buttons
+        
+        if (this.secondsRemaining == 0) {
+            startPauseTimerButton.disabled = true;
+        }
         resetButton.disabled = false;
         startPauseTimerButton.innerHTML = "Start";
     }, 
     resetTimer() {
-        // Resets timer
         clearInterval(t);
         this.active = false;
         if (this.secondsRemaining != undefined) this.secondsRemaining = undefined;
-        updateTimerText(this.secondsPerQuestion)
+        updateTimerText(userSettings.secondsPerQuestion)
+        
         // Edits buttons
         startPauseTimerButton.innerHTML = "Start";
         resetButton.disabled = true;
         startPauseTimerButton.disabled = false;
     }
+};
+
+// Sets timer on page load
+timer.resetTimer();
+
+// json-server --watch db.json
+// temporary - only works locally
+fetch("http://localhost:3000/questions")
+    .then(function(response){
+        return response.json();
+    })
+    .then(function(data) {
+        let questionCounter = 0;
+        let questions = getUserQuestions(userSettings, data);
+
+        if (questions.length == 0) {
+            // todo - add validation message
+        }
+        else {
+            nextQuestion(questions, questionCounter);
+            
+            document.querySelector('#nextQuestion').addEventListener("click", () => {
+                questionCounter++;
+                nextQuestion(questions, questionCounter);
+                // TODO - add validation or helpful error message?
+            })
+            console.log(questions);
+        }
+        
+        
+    }) 
+
+function getUserQuestions(userSettings, data) {
+    // Need to fix to be length of questions chosen
+    return data.reduce((array, element) => {
+        console.log(element.level, userSettings.level)
+        if (userSettings.level === "all") {
+            return array.concat(element.question);
+        } 
+        else if (element.level == userSettings.level) {
+            return array.concat(element.question);
+        } 
+        else {
+            return array;
+        }
+    }, []);
 }
 
-timer.resetTimer();
+function nextQuestion(questions, questionCounter) {
+
+    timer.resetTimer();
+    questionDiv.innerHTML = questions[questionCounter];
+
+    // Hides button and disables it once we reach the end of questions array
+    if (questionCounter === questions.length - 1) {
+        hideElement(document.querySelector('#nextQuestion'));
+        document.querySelector('#nextQuestion').disabled = true;
+    }
+
+}
 
 function updateTimerText(seconds) {
     timerSeconds.innerHTML = seconds;
@@ -78,3 +142,8 @@ document.querySelector('#startTimer').addEventListener('click', () => {
 document.querySelector('#resetTimer').addEventListener('click', () => {
     timer.resetTimer();
 })
+
+
+
+
+
