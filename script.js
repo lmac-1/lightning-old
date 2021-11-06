@@ -1,5 +1,9 @@
 let t = null;
 
+const homeSection = document.querySelector('#homeSection');
+const settingsSection = document.querySelector('#settingsSection');
+const timerSection = document.querySelector('#timerSection');
+
 const startPauseTimerButton = document.querySelector('#startTimer');
 const resetButton = document.querySelector('#resetTimer');
 const timerSeconds = document.querySelector('#timer');
@@ -8,7 +12,7 @@ const questionDiv = document.querySelector('#question');
 let userSettings = {
     totalQuestions: 5, 
     secondsPerQuestion: 10, 
-    level: "easy", 
+    level: "hard", 
     recording: false
 }
 
@@ -143,6 +147,10 @@ document.querySelector('#resetTimer').addEventListener('click', () => {
     timer.resetTimer();
 })
 
+document.querySelector('#start').addEventListener('click', () => {
+    hideElement(homeSection);
+    showElement(settingsSection);
+})
 
 
 

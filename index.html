@@ -4,23 +4,38 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A free web application to practice your English speaking skills.">
+    <meta name="keywords" content="English, Speaking, Skills">
+    <meta name="author" content="Lucy Macartney">
     <title>Lightning</title>
-    <link rel="stylesheet" href="app/scss/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Shrikhand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
-
+    <link rel="stylesheet" href="app/scss/style.css">
+    <script src="script.js" type="text/javascript" async></script>
 </head>
 <body>
     <main class="h-100">
-        <div class="flex flex-jc-c flex-ai-c flex-column h-100"> 
-            <section class="text-center">
+        <div class="h-100 text-center flex flex-ai-c flex-jc-c flex-column"> 
+            <section class="" id="homeSection">
                 <h1 class="m0">Lightning</h1>
-                <p>1 minute english speaking practice</p>
+                <p>Put your English speaking skills to the test</p>
                 <!-- TODO add instructions -->
-                <a href="timer.html" class="button">let's go</a>
+                <button id="start">let's go</button>
+            </section>
+            <section class="d-none" id="settingsSection">
+                <form>
+                    <input type="text" name="total">
+                    <input type="text">
+                </form>
+            </section>
+            <section class="d-none" id="timerSection">
+                <button id="startTimer">Start</button>
+                <button id="resetTimer" disabled>Reset</button>
+                <p id="timer">5</p>
+                <p id="question"></p>
+                <button id="nextQuestion">Next question</button>
             </section>
         </div>
     </main>
