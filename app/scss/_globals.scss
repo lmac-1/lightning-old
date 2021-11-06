@@ -8,21 +8,27 @@ html {
 
 *, *::before, *::after {
     box-sizing: inherit;
-    margin: 0;
-    padding: 0;
 }
 
 body {
-    margin: 0;
     padding: 0;
     height: 100%;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
     background-color: $background;
     color: $primary;
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
+body, h1, h2, h3, h4, h5, h6, p, figure, blockquote, ul, ol, dl, dt, dd {
+    margin: 0;
+}
+
+input, button, textarea, select {
+    font: inherit;
+}
+
 h1,h2,h3 {
-    margin-top: 0;
     color: $tertiary;
 }
 
@@ -39,6 +45,15 @@ p {
 
 a, a:hover, a:visited {
     text-decoration: none;
+}
+
+nav a {
+    color: $primary;
+    margin-top: 1rem;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 /* Flex helper classes */
@@ -86,8 +101,6 @@ a, a:hover, a:visited {
     border: 1px solid $secondary;
     border-radius: 10px;
     color: $primary;
-    font-size: 1rem;
-    font-family: inherit;
     transition: transform 200ms;
     cursor: pointer;
 
