@@ -39,6 +39,10 @@ h1 {
     letter-spacing: -2.4px;
 }
 
+h2 {
+    margin: 1rem 0;
+}
+
 p {
     margin-bottom: 0.5rem;
 }
@@ -47,15 +51,50 @@ a, a:hover, a:visited {
     text-decoration: none;
 }
 
-nav a {
+a {
     color: $primary;
-    margin-top: 1rem;
-}
-
-nav a:hover {
     text-decoration: underline;
+    display: block;
+    text-align: left;
+    padding-bottom: 20px;
 }
 
+a:hover {
+    text-decoration: none;
+}
+
+.formInput {
+    margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+}
+
+section {
+    max-width: 500px;
+}
+
+#settingsSection label {
+    width: 150px;
+}
+
+#settingsSection select {
+    width: 150px;
+    padding: 0.2rem;
+    border-radius: 0.35rem;
+}
+
+#settingsSection input[type=checkbox] {
+    // styles
+    color: black;
+}
+
+p em {
+    color: $other;
+    font-weight: 800;
+    padding: 0.5rem;
+}
 /* Flex helper classes */
 .flex {
     display: flex;
@@ -95,7 +134,7 @@ nav a:hover {
 
 .button, button {
     display: inline-block;
-    padding: 0.5rem 0.8rem;
+    padding: 0.5rem 1.5rem;
     margin: 0.5rem;
     background-color: $secondary;
     border: 1px solid $secondary;
@@ -112,6 +151,12 @@ nav a:hover {
     &:hover:enabled {
         transform: scale(1.05);
     }
+}
+
+#instructionsSection {
+    border: 1px solid $tertiary;
+    border-radius: 10%;
+    padding: 50px;
 }
 
 .timerContainer {
