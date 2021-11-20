@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap');
-
 html {
     font-size: 100%;
     box-sizing: border-box;
@@ -35,8 +33,12 @@ h1,h2,h3 {
 h1 {
     font-family: 'Inter';
     font-weight: 800;
-    font-size: 5rem;
+    font-size: 3.5rem;
     letter-spacing: -2.4px;
+
+    @include breakpoint-up(medium){
+        font-size: 5rem;
+    }
 }
 
 h2 {
@@ -72,29 +74,29 @@ a:hover {
 }
 
 section {
-    max-width: 500px;
+    @include breakpoint-up(medium){
+        max-width: 500px;
+    }
 }
 
-#settingsSection label {
+.settings label {
     width: 150px;
 }
 
-#settingsSection select {
+.settings select {
     width: 150px;
     padding: 0.2rem;
     border-radius: 0.35rem;
 }
 
-#settingsSection input[type=checkbox] {
-    // styles
-    color: black;
-}
+/* .settings input[type=checkbox] {
+} */
 
 p em {
     color: $other;
     font-weight: 800;
-    padding: 0.5rem;
 }
+
 /* Flex helper classes */
 .flex {
     display: flex;
@@ -128,12 +130,15 @@ p em {
     text-align: center;
 }
 
+.text-left {
+    text-align: left;
+}
+
 .secondary {
     color: $secondary;
 }
 
 .button, button {
-    display: inline-block;
     padding: 0.5rem 1.5rem;
     margin: 0.5rem;
     background-color: $secondary;
@@ -153,10 +158,21 @@ p em {
     }
 }
 
-#instructionsSection {
-    border: 1px solid $tertiary;
-    border-radius: 10%;
-    padding: 50px;
+.instructions {
+    padding: 25px;
+
+    @include breakpoint-up(medium) {
+        border: 1px solid $tertiary;
+        border-radius: 10%;
+        padding: 50px;
+    }
+}
+
+.record {
+    background-color: $other_transparent;
+    padding: 15px 10px;
+    margin: 20px 0;
+    border-radius: 0.4rem;
 }
 
 .timerContainer {
@@ -167,4 +183,8 @@ p em {
 
 .d-none {
     display: none;
+}
+
+.btn-center {
+    text-align: center;
 }

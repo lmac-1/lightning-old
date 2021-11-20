@@ -1,47 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="A free web application to practice your English speaking skills.">
-    <meta name="keywords" content="English, Speaking, Skills">
-    <meta name="author" content="Lucy Macartney">
-    <!-- TODO change dimensions -->
-    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-    <title>Lightning</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="app/scss/style.css">
-    <script src="script.js" type="text/javascript" async></script>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- <meta name="viewport" content="width=device-width, user-scalable=no"> -->
+        <meta name="description" content="A free web application to practice your English speaking skills.">
+        <meta name="keywords" content="English, Speaking, Skills">
+        <meta name="author" content="Lucy Macartney">
+        <!-- TODO change dimensions -->
+        <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+        <title>Lightning</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@800&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="app/scss/style.css">
+        <script src="https://kit.fontawesome.com/ee1e4d6724.js" crossorigin="anonymous"></script>
+        <script src="script.js" type="text/javascript" async></script>
+    </head>
 <body>
     <main class="h-100">
-        <div class="h-100 flex flex-ai-c flex-jc-c flex-column"> 
-            <section class="text-center" id="homeSection">
+        <div class="h-100 flex flex-ai-c flex-jc-c flex-column text-center"> 
+            
+            <section class="home" id="homeSection">
                 <h1 class="m0">Lightning</h1>
                 <p>Put your English speaking skills to the test</p>
                 <button id="homeNext">Let's go</button>
             </section>
-            <section class="d-none" id="instructionsSection">
-                <a id="instructionsBack" href="javascript:void">&lt; - Back</a>
+
+            <section class="d-none instructions" id="instructionsSection">
+                <a href="#" id="instructionsBack">&lt;  Back</a>
                 <!-- <button id="backHome">Back</button> -->
-                <h2>Welcome to Lightning.</h2>
-                <p>We will be doing an activity called <em>lightning questions</em> to practice your English speaking skills under pressure.</p>
-                <p>A question will appear on screen, read it quickly and then start speaking until the timer reaches 0.</p>
-                <p>First, let's get set up.</p>
-                <button id="instructionsNext">Next</button>
-            </section>
-            <section class="d-none text-center" id="settingsSection">
+                <div class="text-left">
+                    <h2>Welcome to Lightning.</h2>
+                    <p>We will be doing an activity called <em>lightning questions</em> to practice your English speaking skills under pressure.</p>
+                    <p>A question will appear on screen, read it quickly and then start speaking until the timer reaches 0.</p>
+                </div>
+                <div class="record">
+                    <label for="recording">I want to record myself</label>
+                    <input type="checkbox" id="recording">
+                </div>
                 
-                <a id="settingsBack" href="javascript:void">&lt; - Back</a>
-                <!-- <button id="resetDefaults">Restore default</button> -->
-                <form onsubmit="return false;">
+                <div class="btn-right">
+                    <button id="instructionsNext">Start game</button>
+                </div>
+                
+            </section>
+
+            <section class="d-none countdown" id="countdownSection">
+                <h1 id="countdown">3</h1>
+            </section>
+
+            <section class="d-none timer" id="timerSection">
+                <div class="">
+                    <nav>
+                        <a href="#" id="timerBack">&lt;  Back</a>
+                        <a href="#" id="settingsIcon"><i class="fas fa-cog fa-lg"></i></a>
+                    </nav>
+                    <!-- <button id="backToSettings" style="display: block;">Back</button> -->
+                    <button id="startTimer">Start</button>
+                    <button id="resetTimer" disabled>Reset</button>
+                    <p id="timerSeconds">5</p>
+                    <p id="question"></p>
+                    <button class="d-none" id="nextQuestion">Next question</button>
+                </div>
+            </section>
+
+            <section class="d-none settings" id="settingsSection">
+                
+                <a href="#" id="settingsBack">&lt;  Back</a>
+                <form>
                     <div class="formInput">
                         <label for="secondsInput">Speaking time:</label>
-                        <select id="secondsInput" type="text" name="seconds">
+                        <select id="secondsInput" name="seconds">
                             <option>30</option>
                             <option>60</option>
                             <option>120</option>
@@ -49,7 +81,7 @@
                     </div>
                     <div class="formInput">
                         <label for="totalQuestionsInput">Total questions:</label>
-                        <select id="totalQuestionsInput" type="text" name="total-questions">
+                        <select id="totalQuestionsInput" name="total-questions">
                             <option>1</option>
                             <option>5</option>
                             <option>10</option>
@@ -70,17 +102,9 @@
                         <input type="checkbox" id="recordingInput">
                     </div>
                 </form>
-                <button id="settingsNext">Let's begin</button>
+                <button id="settingsNext">Save changes</button>
             </section>
-            <section class="d-none text-center" id="timerSection">
-                <a id="timerBack" href="javascript:void">&lt; - Back</a>
-                <!-- <button id="backToSettings" style="display: block;">Back</button> -->
-                <button id="startTimer">Start</button>
-                <button id="resetTimer" disabled>Reset</button>
-                <p id="timerSeconds">5</p>
-                <p id="question"></p>
-                <button class="d-none" id="nextQuestion">Next question</button>
-            </section>
+
         </div>
     </main>
 </body>

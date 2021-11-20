@@ -1,9 +1,13 @@
 revise.txt
 todo.txt
 
+node_modules
+.parcel-cache
+
 *.css
 *.css.map
 
 
 # Mac file
 .DS_Store
+dist

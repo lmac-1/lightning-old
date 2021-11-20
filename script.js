@@ -2,11 +2,11 @@ let t = null;
 
 /* 
 TODO 
-- Move the settings to an icon accessible from timer screen
-- Make instructions go straight to timer
-- 3 2 1 countdown first time on timer
 - Timer will be active with start button activated
 - Default settings will be all / infinitive
+- Default settings for q's will be 5?
+- Decide what screen will look like when you finish game
+- How will recording work?
 - We will ask on the instructions if they want to be recorded
 */
 
@@ -25,7 +25,11 @@ const pages = {
         containerDiv: document.querySelector('#settingsSection'),
         nextButton: document.querySelector('#settingsNext'),
         backButton: document.querySelector('#settingsBack')
-    }, 
+    },
+    countdown: {
+        containerDiv: document.querySelector('#countdownSection'),
+        countdownText: document.querySelector('#countdown')
+    },
     timer: {
         containerDiv: document.querySelector('#timerSection'),
         backButton: document.querySelector('#timerBack'),
@@ -33,16 +37,18 @@ const pages = {
         resetButton: document.querySelector('#resetTimer'),
         timerSecondsText: document.querySelector('#timerSeconds'),
         questionText: document.querySelector('#question'),
-        nextQuestionButton: document.querySelector('#nextQuestion')
+        nextQuestionButton: document.querySelector('#nextQuestion'),
+        settingsIcon: document.querySelector('#settingsIcon')
     }
-}
+};
 
 const defaultSettings = {
-    totalQuestions: 5,
+    totalQuestions: "",
     secondsPerQuestion: 60, 
-    level: "easy",
-    recording: false
-}
+    level: "all",
+    recording: false,
+    initialCountdown: 3
+};
 
 // Will be updated by what user chooses in form
 let userSettings = {
@@ -50,12 +56,27 @@ let userSettings = {
     secondsPerQuestion: defaultSettings.secondsPerQuestion, 
     level: defaultSettings.level, 
     recording: defaultSettings.recording
-}
+};
 
 // Holds all timer logic
 let timer = {
     secondsRemaining: undefined,
     active: false,
+    countdown(seconds) {
+        pages.countdown.countdownText.innerHTML = seconds;
+        
+        let time = setInterval(() => {
+            if (seconds > 0) {
+                seconds--;
+                pages.countdown.countdownText.innerHTML = seconds;
+            }
+            if (seconds <= 0) {
+                clearInterval(time);
+                hideElement(document.querySelector('#countdownSection'));
+                showElement(pages.timer.containerDiv);
+            }
+        }, 1000);
+    },
     startTimer() {
         if (this.secondsRemaining == undefined) this.secondsRemaining = userSettings.secondsPerQuestion;
         this.active = true;
@@ -94,7 +115,7 @@ let timer = {
         clearInterval(t);
         this.active = false;
         if (this.secondsRemaining != undefined) this.secondsRemaining = undefined;
-        updateTimerText(userSettings.secondsPerQuestion)
+        updateTimerText(userSettings.secondsPerQuestion);
         
         // Edits buttons
         pages.timer.startPauseTimerButton.innerHTML = "Start";
@@ -133,7 +154,6 @@ function getUserQuestions(userSettings, data) {
     if (userSettings.totalQuestions !== "") {
         return questions.slice(0, userSettings.totalQuestions);
     }
-
     return questions;
 }
 
@@ -193,28 +213,30 @@ function updateQuestions(userSettings) {
             })
             console.log(questions);
         }
-    }) 
+    });
 
 }
 
 // Sets timer and defaults on page load
 timer.resetTimer();
-setDefaultSettings()
+setDefaultSettings();
 
 pages.home.nextButton.addEventListener('click', () => {
     hideElement(pages.home.containerDiv);
     showElement(pages.instructions.containerDiv);
-})
+});
 
 pages.instructions.nextButton.addEventListener('click', () => {
     hideElement(pages.instructions.containerDiv);
-    showElement(pages.settings.containerDiv)
-})
+    showElement(pages.countdown.containerDiv);
+    updateQuestions(userSettings);
+    timer.countdown(defaultSettings.initialCountdown);
+});
 
 pages.instructions.backButton.addEventListener('click', () => {
     hideElement(pages.instructions.containerDiv);
     showElement(pages.home.containerDiv)
-})
+});
 
 pages.settings.nextButton.addEventListener('click', () => {
     let inputs = {
@@ -223,32 +245,32 @@ pages.settings.nextButton.addEventListener('click', () => {
         level: document.querySelector('#levelInput').value,
         recording: document.querySelector('#recordingInput').checked
     }
-
-    console.log(inputs);
-
     updateUserSettings(userSettings, inputs)
     updateQuestions(userSettings)
     hideElement(pages.settings.containerDiv);
     showElement(pages.timer.containerDiv);
-
-})
-
-/* document.querySelector('#resetDefaults').addEventListener('click', setDefaultSettings); */
+});
 
 pages.settings.backButton.addEventListener('click', () => {
     hideElement(pages.settings.containerDiv);
-    showElement(pages.instructions.containerDiv);
-})
+    showElement(pages.timer.containerDiv);
+});
 
 pages.timer.backButton.addEventListener('click', () => {
     hideElement(pages.timer.containerDiv);
-    showElement(pages.settings.containerDiv);
-})
+    console.log('hi')
+    showElement(pages.instructions.containerDiv);
+});
 
 pages.timer.startPauseTimerButton.addEventListener('click', () => {
     (timer.active) ? timer.pauseTimer() : timer.startTimer()
-})
+});
 
 pages.timer.resetButton.addEventListener('click', () => {
     timer.resetTimer();
-})
+});
+
+pages.timer.settingsIcon.addEventListener('click', () => {
+    showElement(pages.settings.containerDiv);
+    hideElement(pages.timer.containerDiv);
+});
